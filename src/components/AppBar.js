@@ -1,9 +1,11 @@
-import React , {useState,useEffect, useRef,useContext, useMemo} from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Search  from './Search';
+import {NextLinkComposed} from './Link';
+
 
 export default function PrimarySearchAppBar() {
 
@@ -11,14 +13,10 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            Flickr
-          </Typography>
+        <Button sx={{fontSize: '1.0rem',fontWeight: 600,color:'white'}} 
+         component={NextLinkComposed} to="/">
+          GDrive
+          </Button>
           <Search />
         </Toolbar>
       </AppBar>
