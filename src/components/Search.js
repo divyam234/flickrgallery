@@ -64,6 +64,7 @@ export default function SearchBar() {
   const inputRef=useRef(null)
 
   useEffect(() => {
+    if (router.asPath ==='/')
     inputRef.current.blur()
   }, [router.asPath]);
 
@@ -72,6 +73,19 @@ export default function SearchBar() {
   dispatch({type:'CHANGE_QUERY',payload:e.target.value}), 500), []);
 
   const  [storedValue, setValue]=useLocalStorage('recentqueries', [])
+
+  useEffect(()=>{
+    if (state.query){
+      if(storedValue.length <5 && storedValue[storedValue.length-1]!==state.query){
+        setValue([...storedValue,...[state.query]])
+      }
+      else if (storedValue.length >=5 && storedValue[storedValue.length-1]!==state.query){
+        storedValue.shift()
+        setValue([...storedValue,...[state.query]])
+      }
+    }
+
+  },[state.query])
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -93,19 +107,6 @@ export default function SearchBar() {
     handleClose()
   };
 
-  const formSubmit=(e)=>{
-    e.preventDefault()
-    if (state.query){
-      if(storedValue.length <5 && storedValue[storedValue.length-1]!==state.query){
-        setValue([...storedValue,...[state.query]])
-      }
-      else if (storedValue.length >=5 && storedValue[storedValue.length-1]!==state.query){
-        storedValue.shift()
-        setValue([...storedValue,...[state.query]])
-      }
-    }
-  }
-
   const onFocus=(e) => {
   router.push('/search')
   if(!state.query && storedValue.length){
@@ -118,7 +119,6 @@ export default function SearchBar() {
         <SearchIconWrapper>
         <SearchIcon />
         </SearchIconWrapper>
-        <form onSubmit={formSubmit}>
         <StyledInputBase
         placeholder="Search Photos..."
         inputProps={{ 'aria-label': 'search' }}
@@ -126,7 +126,6 @@ export default function SearchBar() {
         onFocus={onFocus}
         inputRef={inputRef}
      />
-     </form>
     </Search>
 
     <Popover
