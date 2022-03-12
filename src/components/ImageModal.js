@@ -37,6 +37,7 @@ export default function ImageModal() {
         height={800}
         quality={100}
         loading="lazy"
+        alt="laztimage"
       />
       </Box>
       </Modal>

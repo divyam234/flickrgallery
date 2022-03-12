@@ -68,6 +68,7 @@ export default function SearchBar() {
   }, [router.asPath]);
 
   const debouncedQuery = useMemo(() => debounce((e)=>
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   dispatch({type:'CHANGE_QUERY',payload:e.target.value}), 500), []);
 
   const  [storedValue, setValue]=useLocalStorage('recentqueries', [])

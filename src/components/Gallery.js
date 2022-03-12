@@ -44,7 +44,7 @@ export default function Gallery({data,
 
     useEffect(()=>{
       if(inView && hasNextPage) fetchNextPage()
-    },[inView])
+    },[inView,hasNextPage,fetchNextPage])
 
 
   return (

@@ -16,7 +16,7 @@ export default memo(function GalleryItem(item) {
   const handleOpen = useCallback(() => { 
 
     dispatch({type:'POPULATE_MODAL',payload:item})
-    dispatch({type:'OPEN_MODAL'})},[dispatch])
+    dispatch({type:'OPEN_MODAL'})},[dispatch,item])
 
   return (
      <ImageListItem>
