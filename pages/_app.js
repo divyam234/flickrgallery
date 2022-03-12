@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@mui/material/styles';
@@ -9,6 +9,11 @@ import createEmotionCache from '../src/utils/createEmotionCache';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import Layout from '../src/components/Layout';
 
+function useMounted() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  return mounted
+}
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -17,7 +22,11 @@ const queryClient = new QueryClient()
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  const isMounted = useMounted()
+
   return (
+    <>
+    {isMounted &&
     <QueryClientProvider client={queryClient}>
     <CacheProvider value={emotionCache}>
       <Head>
@@ -30,7 +39,8 @@ export default function MyApp(props) {
         </Layout>
       </ThemeProvider>
     </CacheProvider>
-    </QueryClientProvider>
+    </QueryClientProvider>}
+    </>
   );
 }
 

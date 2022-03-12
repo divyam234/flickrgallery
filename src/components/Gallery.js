@@ -42,7 +42,6 @@ export default function Gallery({data,
 
     },[data])
 
-    console.log(data)
 
     useEffect(()=>{
       if(inView && hasNextPage) fetchNextPage()
