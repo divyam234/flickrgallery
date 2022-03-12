@@ -30,8 +30,8 @@ export default function ImageModal() {
       >
        <Box sx={style}>
        <Image
-        src={item.hasOwnProperty('url_l_cdn') ?item['url_l_cdn'] :item['url_n_cdn'] }
-        blurDataURL={item['url_sq_cdn']}
+        src={item.hasOwnProperty('url_l') ?item['url_l'] :item['url_n'] }
+        blurDataURL={item['url_sq']}
         placeholder="blur"
         width={1024}
         height={800}

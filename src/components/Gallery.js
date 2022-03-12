@@ -36,15 +36,17 @@ export default function Gallery({data,
     const photos=useMemo(()=>{
         if (data) {
          return data.pages.reduce((prev, curr) => 
-          [...prev,...curr.photos.photo.filter(item=>item.hasOwnProperty('url_n_cdn'))], [])
+          [...prev,...curr.photos.photo.filter(item=>item.hasOwnProperty('url_n'))], [])
         }
         else return []
 
     },[data])
 
+    console.log(data)
+
     useEffect(()=>{
       if(inView && hasNextPage) fetchNextPage()
-    },[inView,hasNextPage,fetchNextPage])
+    },[inView])
 
 
   return (

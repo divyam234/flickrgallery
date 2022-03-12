@@ -10,7 +10,7 @@ export default function Index() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-} = useFetchPhotos('', 'flickr.interestingness.getList')
+} = useFetchPhotos('explore', 'flickr.interestingness.getList')
 
   return (
     <>

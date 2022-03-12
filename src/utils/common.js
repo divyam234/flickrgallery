@@ -11,7 +11,7 @@ export const fetchData = (query, method) => async ({
     "per_page":"24",
     "page":pageParam,
     "method":method,
-    "api_key":"9ef4326b0e806466c6c0524f6a73b390",
+    "api_key":process.env.NEXT_PUBLIC_API_KEY,
     "format":"json",
     "hermes":"1",
     "hermesClient":"1",

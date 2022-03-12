@@ -21,8 +21,8 @@ export default memo(function GalleryItem(item) {
   return (
      <ImageListItem>
       <LazyImage
-        src={item['url_n_cdn']}
-        blurDataURL={item['url_sq_cdn']}
+        src={item['url_n']}
+        blurDataURL={item['url_sq']}
         placeholder="blur"
         width={500}
         height={300}
