@@ -1,25 +1,24 @@
-import React ,{useContext} from 'react';
+import React ,{useContext,useCallback} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import {NextLinkComposed} from './Link';
-import dynamic from 'next/dynamic'
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import IconButton from '@mui/material/IconButton';
 import { useTheme} from '@mui/material/styles';
-import {ColorModeContext} from '../utils/context'
-
-const SearchWithNoSSR = dynamic(
-  () => import('./Search'),
-  { ssr: false }
-)
+import { store } from '../utils/store'
+import Search from './Search'
 
 export default function PrimarySearchAppBar() {
 
   const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
+
+  const { dispatch } = useContext(store)
+
+  const toggleDarkMode=useCallback(()=>dispatch({ type: 'TOGGLE_DARKMODE' }),[dispatch])
+  
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -29,8 +28,8 @@ export default function PrimarySearchAppBar() {
          component={NextLinkComposed} to="/">
           Flickr
           </Button>
-          <SearchWithNoSSR/>
-          <IconButton sx={{ right: 32 }} onClick={colorMode.toggleColorMode} color="inherit">
+          <Search/>
+          <IconButton sx={{ right: 32 }} onClick={toggleDarkMode} color="inherit">
           {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>

@@ -42,9 +42,13 @@ export const useFetchPhotos = (query, method) => {
 export function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const item = window.localStorage.getItem(key);
-    
-      return item ? JSON.parse(item) : initialValue;
+      if (typeof window !== "undefined"){
+        const item = window.localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialValue;
+      }
+
+      else return initialValue
+      
     } catch (error) {
       console.log(error);
       return initialValue;
@@ -56,12 +60,12 @@ export function useLocalStorage(key, initialValue) {
     
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
-     
-      setStoredValue(valueToStore);
-     
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
 
+      if (typeof window !== "undefined"){
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+     }
+    } catch (error) {
       console.log(error);
     }
   };

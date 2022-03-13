@@ -85,6 +85,7 @@ export default function SearchBar() {
       }
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[state.query])
 
   const [anchorEl, setAnchorEl] = React.useState(null);

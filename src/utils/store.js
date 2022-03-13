@@ -6,7 +6,11 @@ const { Provider } = store
 
 const StateProvider = ({ children }) => {
 
-  const initialState = { query: '',modal:{open:false,data:{}}}
+  const darkState = typeof window !== "undefined" ? 
+  JSON.parse(window.localStorage.getItem('darkMode')) : true
+
+  const initialState = { query: '',modal:{open:false,data:{}}
+  ,darkMode: darkState == null ? true : darkState}
 
   const [state, dispatch] = useReducer((state, action) => {
 
@@ -22,6 +26,10 @@ const StateProvider = ({ children }) => {
 
       case 'POPULATE_MODAL':
         return {...state,modal:{...state.modal,data:action.payload}}
+
+      case 'TOGGLE_DARKMODE':
+          window.localStorage.setItem('darkMode', !state.darkMode)
+          return {...state,darkMode: !state.darkMode}
 
       default:
         throw new Error()

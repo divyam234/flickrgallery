@@ -60,6 +60,7 @@ export default function Gallery({data,
 
     useEffect(()=>{
       if(inView && hasNextPage) fetchNextPage()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[inView])
 
 
