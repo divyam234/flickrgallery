@@ -12,7 +12,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
-import {useLocalStorage} from '../hooks/queryhooks'
+import { useLocalStorage } from 'usehooks-ts'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
