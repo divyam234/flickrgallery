@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import theme from '../src/utils/theme';
 import createEmotionCache from '../src/utils/createEmotionCache';
 
 export default class MyDocument extends Document {
@@ -9,9 +8,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={"#556cd6"} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="stylesheet"

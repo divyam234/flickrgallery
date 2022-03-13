@@ -2,7 +2,6 @@ import React ,{useEffect} from 'react';
 import { styled} from '@mui/material/styles';
 import { useMemo} from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
-import ImageList from '@mui/material/ImageList';
 import { useInView } from 'react-intersection-observer'
 import GalleryItem  from './GalleryItem';
 import Typography from '@mui/material/Typography';
@@ -20,6 +19,22 @@ const style = {
   transform: 'translate(-50%, -50%)',
   outline:'0',
 };
+
+const ImageGalleryList = styled('ul')(({ theme }) => ({
+  display: 'grid',
+  padding: 0,
+  margin: theme.spacing(0, 4),
+  gap: 8,
+  [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: 'repeat(2, 1fr)'
+  },
+  [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: 'repeat(3, 1fr)'
+  },
+  [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: 'repeat(4, 1fr)'
+  },
+}));
 
 export default function Gallery({data,
   fetchNextPage,
@@ -51,11 +66,11 @@ export default function Gallery({data,
   return (
     <>
     {data && photos.length >0 &&
-    <ImageList variant="masonry" cols={3} gap={8}>
+    <ImageGalleryList>
      {photos.map(item=>(
       < GalleryItem {...item} key={item.id}/>
     ))}
-    </ImageList>
+    </ImageGalleryList>
     }
 
    {data && photos.length===0 && 
