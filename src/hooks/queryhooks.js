@@ -23,7 +23,7 @@ export const useFetchPhotos = (query, method) => {
     fetchData(query, method),
     {
       getNextPageParam: (lastPage, allPages) =>
-      lastPage.photos.pages === allPages.length? undefined : allPages.length,
+      lastPage.photos.pages === allPages.length? undefined : allPages.length+1,
       staleTime: 5 * 60 * 1000,
       enabled: queryEnabled(query, method)
     }
