@@ -2,7 +2,6 @@ import React from 'react';
 import Gallery from '../src/components/Gallery'
 import {useFetchPhotos} from '../src/hooks/queryhooks'
 
-
 export default function Index() {
 
   const {
@@ -10,11 +9,12 @@ export default function Index() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isFetching
 } = useFetchPhotos('explore', 'flickr.interestingness.getList')
 
   return (
     <>
-     <Gallery {...{data, fetchNextPage, hasNextPage, isFetchingNextPage}}/>
+     <Gallery {...{data, fetchNextPage, hasNextPage, isFetchingNextPage,isFetching}}/>
     </>
   );
 }

@@ -1,10 +1,11 @@
-import React ,{useEffect} from 'react';
+import React ,{useEffect,memo} from 'react';
 import { styled} from '@mui/material/styles';
 import { useMemo} from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useInView } from 'react-intersection-observer'
 import GalleryItem  from './GalleryItem';
 import Typography from '@mui/material/Typography';
+import TopLoader from './TopLoader'
 
 const Loader = styled('div')(({ theme }) => ({
    width: '100%',
@@ -36,11 +37,11 @@ const ImageGalleryList = styled('ul')(({ theme }) => ({
   },
 }));
 
-export default function Gallery({data,
+export default memo(function Gallery({data,
   fetchNextPage,
   hasNextPage,
-  isFetching,
-  isFetchingNextPage}) {
+  isFetchingNextPage,
+  isFetching}) {
 
   const [ref, inView] = useInView({
     root:null,
@@ -66,6 +67,7 @@ export default function Gallery({data,
 
   return (
     <>
+      {isFetching && !isFetchingNextPage && <TopLoader></TopLoader>}
     {data && photos.length >0 &&
     <ImageGalleryList>
      {photos.map(item=>(
@@ -85,4 +87,4 @@ export default function Gallery({data,
    </Loader>
    </>
   );
-}
+})

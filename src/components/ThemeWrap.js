@@ -1,4 +1,4 @@
-import  React ,{useMemo,useContext} from 'react';
+import  React ,{useMemo,useContext,useLayoutEffect} from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme } from '@mui/material/styles';
@@ -6,7 +6,7 @@ import { store } from '../utils/store'
 
 export default function ThemeWrap({children}) {
 
-  const { darkMode } = useContext(store).state
+  const {darkMode } = useContext(store).state
 
   const theme = useMemo(
     () =>
